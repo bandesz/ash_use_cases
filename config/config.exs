@@ -40,7 +40,8 @@ config :spark,
 
 config :ash_use_cases,
   ecto_repos: [AshUseCases.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [AshUseCases.NoRelationship]
 
 # Configures the endpoint
 config :ash_use_cases, AshUseCasesWeb.Endpoint,
