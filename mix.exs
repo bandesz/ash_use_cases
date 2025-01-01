@@ -84,7 +84,12 @@ defmodule AshUseCases.MixProject do
         "tailwind ash_use_cases --minify",
         "esbuild ash_use_cases --minify",
         "phx.digest"
-      ]
+      ],
+      start: ["clean", "deps.get", &docker_compose_up/1, "ecto.migrate", "phx.server"]
     ]
+  end
+
+  defp docker_compose_up(_) do
+    Mix.shell().cmd("docker compose up -d")
   end
 end
