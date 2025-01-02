@@ -4,7 +4,7 @@ defmodule AshUseCasesWeb.SimpleResourceController do
   alias AshUseCases.NoRelationship.SimpleResource
 
   def index(conn, _params) do
-    simpleresources = SimpleResource.read!()
+    simpleresources = SimpleResource |> Ash.read!()
     render(conn, :index, simpleresources: simpleresources)
   end
 
@@ -30,18 +30,18 @@ defmodule AshUseCasesWeb.SimpleResourceController do
   end
 
   def show(conn, %{"id" => id}) do
-    simple_resource = SimpleResource.by_id!(id)
+    simple_resource = SimpleResource |> Ash.get!(id)
     render(conn, :show, simple_resource: simple_resource)
   end
 
   def edit(conn, %{"id" => id}) do
-    simple_resource = SimpleResource.by_id!(id)
+    simple_resource = SimpleResource |> Ash.get!(id)
 
     render(conn, :edit, simple_resource: simple_resource, form: update_form(simple_resource))
   end
 
   def update(conn, %{"simple_resource" => simple_resource_params, "id" => id}) do
-    simple_resource = SimpleResource.by_id!(id)
+    simple_resource = SimpleResource |> Ash.get!(id)
 
     simple_resource
     |> update_form(simple_resource_params)
@@ -60,8 +60,8 @@ defmodule AshUseCasesWeb.SimpleResourceController do
   end
 
   def delete(conn, %{"id" => id}) do
-    simple_resource = SimpleResource.by_id!(id)
-    :ok = SimpleResource.destroy(simple_resource)
+    simple_resource = SimpleResource |> Ash.get!(id)
+    :ok = Ash.destroy(simple_resource)
 
     conn
     |> put_flash(:info, "SimpleResource deleted successfully.")
