@@ -1,0 +1,19 @@
+<.header>
+  SimpleResource {@simple_resource.id}
+  <:subtitle>This is a simple_resource record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/simpleresources/#{@simple_resource}/edit"}>
+      <.button>Edit simple_resource</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Id">{@simple_resource.id}</:item>
+
+  <:item title="Name">{@simple_resource.name}</:item>
+
+  <:item title="Count">{@simple_resource.count}</:item>
+</.list>
+
+<.back navigate={~p"/simpleresources"}>Back to simpleresources</.back>

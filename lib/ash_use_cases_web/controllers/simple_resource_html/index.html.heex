@@ -1,0 +1,36 @@
+<.header>
+  SimpleResource Listing
+  <:actions>
+    <.link href={~p"/simpleresources/new"}>
+      <.button>New SimpleResource</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="simpleresources"
+  rows={@simpleresources}
+  row_click={&JS.navigate(~p"/simpleresources/#{&1}")}
+>
+  <:col :let={simple_resource} label="Id">{simple_resource.id}</:col>
+
+  <:col :let={simple_resource} label="Name">{simple_resource.name}</:col>
+
+  <:col :let={simple_resource} label="Count">{simple_resource.count}</:col>
+
+  <:action :let={simple_resource}>
+    <div class="sr-only">
+      <.link navigate={~p"/simpleresources/#{simple_resource}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/simpleresources/#{simple_resource}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={simple_resource}>
+    <.link
+      href={~p"/simpleresources/#{simple_resource}"}
+      method="delete"
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>

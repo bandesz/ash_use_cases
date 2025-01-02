@@ -1,0 +1,12 @@
+<.header>
+  Edit SimpleResource {@simple_resource.id}
+  <:subtitle>Use this form to manage simple_resource records in your database.</:subtitle>
+</.header>
+
+<.simple_resource_form
+  simple_resource={@simple_resource}
+  form={@form}
+  action={~p"/simpleresources/#{@simple_resource}"}
+/>
+
+<.back navigate={~p"/simpleresources"}>Back to simpleresources</.back>

@@ -18,6 +18,7 @@ defmodule AshUseCasesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/simpleresources", SimpleResourceController
   end
 
   # Other scopes may use custom stacks.
